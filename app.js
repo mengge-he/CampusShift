@@ -7,139 +7,139 @@ const slots = [
     "Wed PM",
     "Thu AM",
     "Thu PM"
-  ];
-  
-  const data = {
+];
+
+const data = {
     volunteers: [
-      {
-        id: 1,
-        name: "Maya Chen",
-        skills: ["Check-in", "Outreach"],
-        availability: ["Mon AM", "Tue PM", "Wed PM", "Thu AM"]
-      },
-      {
-        id: 2,
-        name: "Jordan Patel",
-        skills: ["Setup", "Cleanup"],
-        availability: ["Mon PM", "Tue AM", "Wed AM", "Thu PM"]
-      },
-      {
-        id: 3,
-        name: "Sam Rivera",
-        skills: ["Check-in", "Setup"],
-        availability: ["Mon AM", "Tue AM", "Wed PM"]
-      }
+        {
+            id: 1,
+            name: "Maya Chen",
+            skills: ["Check-in", "Outreach"],
+            availability: ["Mon AM", "Tue PM", "Wed PM", "Thu AM"]
+        },
+        {
+            id: 2,
+            name: "Jordan Patel",
+            skills: ["Setup", "Cleanup"],
+            availability: ["Mon PM", "Tue AM", "Wed AM", "Thu PM"]
+        },
+        {
+            id: 3,
+            name: "Sam Rivera",
+            skills: ["Check-in", "Setup"],
+            availability: ["Mon AM", "Tue AM", "Wed PM"]
+        }
     ],
-  
+
     events: [
-      {
-        id: 101,
-        name: "Startup Night",
-        date: "2026-06-18",
-        location: "Innovation Hub",
-        roles: ["Check-in", "Setup", "Cleanup"],
-        shifts: [
-          {
-            id: 1001,
-            slot: "Mon AM",
-            role: "Setup",
-            assignedTo: 2
-          },
-          {
-            id: 1002,
-            slot: "Mon PM",
-            role: "Check-in",
-            assignedTo: null
-          },
-          {
-            id: 1003,
-            slot: "Tue PM",
-            role: "Cleanup",
-            assignedTo: null
-          }
-        ]
-      }
+        {
+            id: 101,
+            name: "Startup Night",
+            date: "2026-06-18",
+            location: "Innovation Hub",
+            roles: ["Check-in", "Setup", "Cleanup"],
+            shifts: [
+                {
+                    id: 1001,
+                    slot: "Mon AM",
+                    role: "Setup",
+                    assignedTo: 2
+                },
+                {
+                    id: 1002,
+                    slot: "Mon PM",
+                    role: "Check-in",
+                    assignedTo: null
+                },
+                {
+                    id: 1003,
+                    slot: "Tue PM",
+                    role: "Cleanup",
+                    assignedTo: null
+                }
+            ]
+        }
     ],
-  
+
     requests: [
-      {
-        id: 201,
-        from: 2,
-        shiftId: 1001,
-        desiredSlot: "Tue AM",
-        status: "Pending"
-      }
+        {
+            id: 201,
+            from: 2,
+            shiftId: 1001,
+            desiredSlot: "Tue AM",
+            status: "Pending"
+        }
     ]
-  };
+};
 
-  function allShifts() {
+function allShifts() {
     return data.events.flatMap(function (event) {
-      return event.shifts.map(function (shift) {
-        return {
-          ...shift,
-          event: event
-        };
-      });
+        return event.shifts.map(function (shift) {
+            return {
+                ...shift,
+                event: event
+            };
+        });
     });
-  }
+}
 
-  function eventCoverage(event) {
+function eventCoverage(event) {
     const assignedShifts = event.shifts.filter(function (shift) {
-      return shift.assignedTo !== null;
+        return shift.assignedTo !== null;
     });
-  
+
     return Math.round((assignedShifts.length / event.shifts.length) * 100);
-  }
+}
 
 
 
-  function badgeClass(percent) {
+function badgeClass(percent) {
     if (percent >= 80) {
-      return "good";
+        return "good";
     }
-  
+
     if (percent >= 50) {
-      return "warn";
+        return "warn";
     }
-  
+
     return "danger";
-  }
+}
 
 
 
-  function renderDashboard() {
+function renderDashboard() {
     const shifts = allShifts();
-  
+
     const assignedShifts = shifts.filter(function (shift) {
-      return shift.assignedTo !== null;
+        return shift.assignedTo !== null;
     });
-  
+
     const openShifts = shifts.filter(function (shift) {
-      return shift.assignedTo === null;
+        return shift.assignedTo === null;
     });
-  
+
     const pendingRequests = data.requests.filter(function (request) {
-      return request.status === "Pending";
+        return request.status === "Pending";
     });
-  
+
     const coverage =
-      shifts.length === 0
-        ? 0
-        : Math.round((assignedShifts.length / shifts.length) * 100);
-  
+        shifts.length === 0
+            ? 0
+            : Math.round((assignedShifts.length / shifts.length) * 100);
+
     document.getElementById("metricEvents").textContent = data.events.length;
     document.getElementById("metricOpenShifts").textContent = openShifts.length;
     document.getElementById("metricCoverage").textContent = `${coverage}%`;
     document.getElementById("metricPendingSwaps").textContent =
-      pendingRequests.length;
-  
+        pendingRequests.length;
+
     const coverageList = document.getElementById("coverageList");
-  
+
     coverageList.innerHTML = data.events
-      .map(function (event) {
-        const percent = eventCoverage(event);
-  
-        return `
+        .map(function (event) {
+            const percent = eventCoverage(event);
+
+            return `
           <article class="coverage-item">
             <div class="coverage-top">
               <div>
@@ -157,19 +157,19 @@ const slots = [
             </div>
           </article>
         `;
-      })
-      .join("");
-  }
-  
+        })
+        .join("");
+}
 
-  function renderEvents() {
+
+function renderEvents() {
     const eventsTable = document.getElementById("eventsTable");
-  
+
     eventsTable.innerHTML = data.events
-      .map(function (event) {
-        const percent = eventCoverage(event);
-  
-        return `
+        .map(function (event) {
+            const percent = eventCoverage(event);
+
+            return `
           <tr>
             <td><strong>${event.name}</strong></td>
             <td>${event.date}</td>
@@ -182,56 +182,56 @@ const slots = [
             </td>
           </tr>
         `;
-      })
-      .join("");
-  }
+        })
+        .join("");
+}
 
 
-  function addSampleEvent() {
+function addSampleEvent() {
     const eventId = Date.now();
-  
+
     const newEvent = {
-      id: eventId,
-      name: "Peer Resume Review",
-      date: "2026-07-02",
-      location: "Engineering Lounge",
-      roles: ["Check-in", "Outreach", "Setup", "Cleanup"],
-      shifts: [
-        {
-          id: eventId + 1,
-          slot: "Tue AM",
-          role: "Check-in",
-          assignedTo: null
-        },
-        {
-          id: eventId + 2,
-          slot: "Tue PM",
-          role: "Outreach",
-          assignedTo: null
-        },
-        {
-          id: eventId + 3,
-          slot: "Wed AM",
-          role: "Setup",
-          assignedTo: null
-        },
-        {
-          id: eventId + 4,
-          slot: "Wed PM",
-          role: "Cleanup",
-          assignedTo: null
-        }
-      ]
+        id: eventId,
+        name: "Peer Resume Review",
+        date: "2026-07-02",
+        location: "Engineering Lounge",
+        roles: ["Check-in", "Outreach", "Setup", "Cleanup"],
+        shifts: [
+            {
+                id: eventId + 1,
+                slot: "Tue AM",
+                role: "Check-in",
+                assignedTo: null
+            },
+            {
+                id: eventId + 2,
+                slot: "Tue PM",
+                role: "Outreach",
+                assignedTo: null
+            },
+            {
+                id: eventId + 3,
+                slot: "Wed AM",
+                role: "Setup",
+                assignedTo: null
+            },
+            {
+                id: eventId + 4,
+                slot: "Wed PM",
+                role: "Cleanup",
+                assignedTo: null
+            }
+        ]
     };
-  
+
     data.events.push(newEvent);
-  
+
     renderDashboard();
     renderEvents();
-  }
+}
 
 
-  console.log(data);
+console.log(data);
 
 
 //   data.volunteers.forEach(function (volunteer) {
@@ -246,39 +246,39 @@ const viewTitles = {
     volunteers: "Volunteers",
     schedule: "Schedule",
     requests: "Requests"
-  };
-  
-  const navButtons = document.querySelectorAll(".nav-item");
-  const views = document.querySelectorAll(".view");
-  const viewTitle = document.getElementById("viewTitle");
-  
-  navButtons.forEach(function (button) {
+};
+
+const navButtons = document.querySelectorAll(".nav-item");
+const views = document.querySelectorAll(".view");
+const viewTitle = document.getElementById("viewTitle");
+
+navButtons.forEach(function (button) {
     button.addEventListener("click", function () {
-      const viewName = button.dataset.view;
-  
-      navButtons.forEach(function (navButton) {
-        navButton.classList.remove("active");
-      });
-  
-      button.classList.add("active");
-  
-      views.forEach(function (view) {
-        view.classList.remove("active");
-      });
-  
-      document.getElementById(`${viewName}-view`).classList.add("active");
-  
-      viewTitle.textContent = viewTitles[viewName];
+        const viewName = button.dataset.view;
+
+        navButtons.forEach(function (navButton) {
+            navButton.classList.remove("active");
+        });
+
+        button.classList.add("active");
+
+        views.forEach(function (view) {
+            view.classList.remove("active");
+        });
+
+        document.getElementById(`${viewName}-view`).classList.add("active");
+
+        viewTitle.textContent = viewTitles[viewName];
     });
-  });
+});
 
 
-  function renderVolunteers() {
+function renderVolunteers() {
     const volunteerList = document.getElementById("volunteerList");
-  
+
     volunteerList.innerHTML = data.volunteers
-      .map(function (volunteer) {
-        return `
+        .map(function (volunteer) {
+            return `
           <article class="volunteer-card">
             <div class="volunteer-card-header">
               <h4>${volunteer.name}</h4>
@@ -290,33 +290,108 @@ const viewTitles = {
             <div class="card-label">Skills</div>
             <div class="skill-list">
               ${volunteer.skills
-                .map(function (skill) {
-                  return `<span class="skill-pill">${skill}</span>`;
-                })
-                .join("")}
+                    .map(function (skill) {
+                        return `<span class="skill-pill">${skill}</span>`;
+                    })
+                    .join("")}
             </div>
   
             <div class="card-label">Availability</div>
             <div class="availability-list">
               ${volunteer.availability
-                .map(function (slot) {
-                  return `<span class="availability-pill">${slot}</span>`;
-                })
-                .join("")}
+                    .map(function (slot) {
+                        return `<span class="availability-pill">${slot}</span>`;
+                    })
+                    .join("")}
             </div>
           </article>
         `;
-      })
-      .join("");
+        })
+        .join("");
+
+    renderAvailabilityEditor();
+}
+
+function renderAvailabilityEditor() {
+    const volunteerSelect = document.getElementById("availabilityVolunteer");
+
+    volunteerSelect.innerHTML = data.volunteers
+        .map(function (volunteer) {
+            return `<option value="${volunteer.id}">${volunteer.name}</option>`;
+        })
+        .join("");
+
+    renderAvailabilityGrid();
+}
+
+function renderAvailabilityGrid() {
+    const volunteerSelect = document.getElementById("availabilityVolunteer");
+    const selectedVolunteerId = Number(volunteerSelect.value);
+
+    const volunteer = data.volunteers.find(function (item) {
+        return item.id === selectedVolunteerId;
+    });
+
+    const availabilityGrid = document.getElementById("availabilityGrid");
+
+    availabilityGrid.innerHTML = slots
+        .map(function (slot) {
+            const selectedClass = volunteer.availability.includes(slot)
+                ? "selected"
+                : "";
+
+            return `
+          <button class="availability-slot ${selectedClass}" data-slot="${slot}">
+            ${slot}
+          </button>
+        `;
+        })
+        .join("");
+}
+
+const addSampleEventButton = document.getElementById("addSampleEventButton");
+
+addSampleEventButton.addEventListener("click", function () {
+    addSampleEvent();
+});
+
+const availabilityVolunteer = document.getElementById("availabilityVolunteer");
+
+availabilityVolunteer.addEventListener("change", function () {
+    renderAvailabilityGrid();
+});
+
+const availabilityGrid = document.getElementById("availabilityGrid");
+
+availabilityGrid.addEventListener("click", function (event) {
+  if (!event.target.classList.contains("availability-slot")) {
+    return;
   }
 
-  const addSampleEventButton = document.getElementById("addSampleEventButton");
+  event.target.classList.toggle("selected");
+});
 
-  addSampleEventButton.addEventListener("click", function () {
-    addSampleEvent();
+
+const saveAvailabilityButton = document.getElementById("saveAvailabilityButton");
+
+saveAvailabilityButton.addEventListener("click", function () {
+  const selectedVolunteerId = Number(availabilityVolunteer.value);
+
+  const volunteer = data.volunteers.find(function (item) {
+    return item.id === selectedVolunteerId;
   });
 
-//   render all the data
-  renderDashboard();
-  renderEvents();
+  const selectedSlots = document.querySelectorAll(".availability-slot.selected");
+
+  volunteer.availability = Array.from(selectedSlots).map(function (button) {
+    return button.dataset.slot;
+  });
+
   renderVolunteers();
+  renderDashboard();
+});
+
+//   render all the data
+renderDashboard();
+renderEvents();
+renderVolunteers();

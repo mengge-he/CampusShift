@@ -1,39 +1,39 @@
 * {
     box-sizing: border-box;
-  }
-  
-  body {
+}
+
+body {
     margin: 0;
     font-family: Arial, sans-serif;
     background: #f6f7f4;
     color: #17201d;
-  }
-  
-  button {
+}
+
+button {
     font: inherit;
     cursor: pointer;
-  }
-  
-  .app-shell {
+}
+
+.app-shell {
     display: grid;
     grid-template-columns: 260px 1fr;
     min-height: 100vh;
-  }
-  
-  .sidebar {
+}
+
+.sidebar {
     background: #14241f;
     color: white;
     padding: 24px 18px;
-  }
-  
-  .brand {
+}
+
+.brand {
     display: flex;
     align-items: center;
     gap: 12px;
     margin-bottom: 32px;
-  }
-  
-  .brand-mark {
+}
+
+.brand-mark {
     width: 44px;
     height: 44px;
     border-radius: 8px;
@@ -42,25 +42,25 @@
     display: grid;
     place-items: center;
     font-weight: bold;
-  }
-  
-  .brand h1 {
+}
+
+.brand h1 {
     margin: 0;
     font-size: 18px;
-  }
-  
-  .brand p {
+}
+
+.brand p {
     margin: 4px 0 0;
     color: #b9c8c0;
     font-size: 12px;
-  }
-  
-  .nav-list {
+}
+
+.nav-list {
     display: grid;
     gap: 8px;
-  }
-  
-  .nav-item {
+}
+
+.nav-item {
     min-height: 42px;
     border: none;
     border-radius: 8px;
@@ -68,157 +68,157 @@
     color: #dce8e0;
     text-align: left;
     padding: 0 12px;
-  }
-  
-  .nav-item:hover,
-  .nav-item.active {
+}
+
+.nav-item:hover,
+.nav-item.active {
     background: rgba(255, 255, 255, 0.12);
     color: white;
-  }
-  
-  .main {
+}
+
+.main {
     padding: 28px;
-  }
-  
-  .topbar {
+}
+
+.topbar {
     margin-bottom: 24px;
-  }
-  
-  .eyebrow {
+}
+
+.eyebrow {
     margin: 0;
     color: #66736d;
     font-size: 12px;
     font-weight: bold;
     text-transform: uppercase;
-  }
-  
-  .topbar h2 {
+}
+
+.topbar h2 {
     margin: 4px 0 0;
     font-size: 30px;
-  }
-  
-  .view {
+}
+
+.view {
     display: none;
     background: white;
     border: 1px solid #dbe1dd;
     border-radius: 8px;
     padding: 20px;
-  }
-  
-  .view.active {
-    display: block;
-  }
+}
 
-  .metrics-grid {
+.view.active {
+    display: block;
+}
+
+.metrics-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 14px;
     margin-bottom: 20px;
-  }
-  
-  .metric-card {
+}
+
+.metric-card {
     background: #ffffff;
     border: 1px solid #dbe1dd;
     border-radius: 8px;
     padding: 18px;
-  }
-  
-  .metric-card span {
+}
+
+.metric-card span {
     display: block;
     color: #66736d;
     font-size: 13px;
     margin-bottom: 8px;
-  }
-  
-  .metric-card strong {
+}
+
+.metric-card strong {
     display: block;
     font-size: 32px;
     margin-bottom: 6px;
-  }
-  
-  .metric-card small {
+}
+
+.metric-card small {
     color: #66736d;
-  }
-  
-  .dashboard-panel {
+}
+
+.dashboard-panel {
     background: #ffffff;
     border: 1px solid #dbe1dd;
     border-radius: 8px;
     padding: 18px;
-  }
-  
-  .dashboard-panel h3 {
+}
+
+.dashboard-panel h3 {
     margin-top: 0;
-  }
-  
-  .coverage-item {
+}
+
+.coverage-item {
     border: 1px solid #dbe1dd;
     border-radius: 8px;
     padding: 14px;
     margin-top: 10px;
-  }
-  
-  .coverage-top {
+}
+
+.coverage-top {
     display: flex;
     justify-content: space-between;
     gap: 12px;
     margin-bottom: 10px;
-  }
-  
-  .muted {
+}
+
+.muted {
     color: #66736d;
     font-size: 14px;
-  }
-  
-  .badge {
+}
+
+.badge {
     display: inline-block;
     padding: 5px 9px;
     border-radius: 999px;
     font-size: 12px;
     font-weight: bold;
-  }
-  
-  .badge.good {
+}
+
+.badge.good {
     background: #e5f3eb;
     color: #21764a;
-  }
-  
-  .badge.warn {
+}
+
+.badge.warn {
     background: #fff2cf;
     color: #a66f00;
-  }
-  
-  .badge.danger {
+}
+
+.badge.danger {
     background: #fde8e6;
     color: #b33737;
-  }
-  
-  .progress-track {
+}
+
+.progress-track {
     height: 10px;
     background: #e8ece8;
     border-radius: 999px;
     overflow: hidden;
-  }
-  
-  .progress-fill {
+}
+
+.progress-fill {
     height: 100%;
     background: #21764a;
     border-radius: 999px;
-  }
+}
 
-  .section-header {
+.section-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 16px;
     margin-bottom: 16px;
-  }
-  
-  .section-header h3 {
+}
+
+.section-header h3 {
     margin: 0;
-  }
-  
-  .section-header button {
+}
+
+.section-header button {
     min-height: 38px;
     padding: 0 14px;
     border: none;
@@ -226,107 +226,175 @@
     background: #21764a;
     color: white;
     font-weight: bold;
-  }
-  
-  .table-wrap {
+}
+
+.table-wrap {
     overflow-x: auto;
-  }
-  
-  table {
+}
+
+table {
     width: 100%;
     border-collapse: collapse;
-  }
-  
-  th,
-  td {
+}
+
+th,
+td {
     padding: 12px 10px;
     border-bottom: 1px solid #dbe1dd;
     text-align: left;
     vertical-align: top;
-  }
-  
-  th {
+}
+
+th {
     color: #66736d;
     font-size: 12px;
     text-transform: uppercase;
-  }
+}
 
-  .volunteer-grid {
+.volunteer-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 14px;
-  }
-  
-  .volunteer-card {
+}
+
+.volunteer-card {
     border: 1px solid #dbe1dd;
     border-radius: 8px;
     background: #ffffff;
     padding: 16px;
-  }
-  
-  .volunteer-card-header {
+}
+
+.volunteer-card-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 12px;
     margin-bottom: 12px;
-  }
-  
-  .volunteer-card h4 {
+}
+
+.volunteer-card h4 {
     margin: 0;
     font-size: 16px;
-  }
-  
-  .skill-list,
-  .availability-list {
+}
+
+.skill-list,
+.availability-list {
     display: flex;
     flex-wrap: wrap;
     gap: 6px;
     margin-top: 8px;
-  }
-  
-  .skill-pill,
-  .availability-pill {
+}
+
+.skill-pill,
+.availability-pill {
     display: inline-block;
     padding: 5px 8px;
     border-radius: 999px;
     font-size: 12px;
     font-weight: bold;
-  }
-  
-  .skill-pill {
+}
+
+.skill-pill {
     background: #e5f3eb;
     color: #21764a;
-  }
-  
-  .availability-pill {
+}
+
+.availability-pill {
     background: #e7efff;
     color: #2f64b3;
-  }
-  
-  .card-label {
+}
+
+.card-label {
     margin-top: 12px;
     color: #66736d;
     font-size: 12px;
     font-weight: bold;
     text-transform: uppercase;
-  }
+}
 
-  @media (max-width: 900px) {
+@media (max-width: 900px) {
     .app-shell {
-      grid-template-columns: 1fr;
+        grid-template-columns: 1fr;
     }
-  
+
     .sidebar {
-      padding: 16px;
+        padding: 16px;
     }
-  
+
     .nav-list {
-      grid-template-columns: repeat(5, 1fr);
+        grid-template-columns: repeat(5, 1fr);
     }
-  
+
+    .volunteers-layout,
     .volunteer-grid,
     .metrics-grid {
-      grid-template-columns: 1fr;
+        grid-template-columns: 1fr;
     }
-  }
+}
+
+.volunteers-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 320px;
+    gap: 18px;
+}
+
+.editor-panel {
+    border: 1px solid #dbe1dd;
+    border-radius: 8px;
+    background: #ffffff;
+    padding: 16px;
+}
+
+.editor-panel h3 {
+    margin-top: 0;
+}
+
+.editor-panel label {
+    display: block;
+    margin-bottom: 6px;
+    color: #66736d;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.editor-panel select {
+    width: 100%;
+    min-height: 40px;
+    padding: 8px 10px;
+    border: 1px solid #dbe1dd;
+    border-radius: 8px;
+    margin-bottom: 14px;
+}
+
+.availability-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-bottom: 14px;
+}
+
+.availability-slot {
+    min-height: 42px;
+    border: 1px solid #dbe1dd;
+    border-radius: 8px;
+    background: white;
+    color: #17201d;
+}
+
+.availability-slot.selected {
+    border-color: #21764a;
+    background: #e5f3eb;
+    color: #21764a;
+    font-weight: bold;
+}
+
+#saveAvailabilityButton {
+    width: 100%;
+    min-height: 40px;
+    border: none;
+    border-radius: 8px;
+    background: #21764a;
+    color: white;
+    font-weight: bold;
+}
