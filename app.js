@@ -161,6 +161,76 @@ const slots = [
       .join("");
   }
   
+
+  function renderEvents() {
+    const eventsTable = document.getElementById("eventsTable");
+  
+    eventsTable.innerHTML = data.events
+      .map(function (event) {
+        const percent = eventCoverage(event);
+  
+        return `
+          <tr>
+            <td><strong>${event.name}</strong></td>
+            <td>${event.date}</td>
+            <td>${event.location}</td>
+            <td>${event.roles.join(", ")}</td>
+            <td>
+              <span class="badge ${badgeClass(percent)}">
+                ${percent}%
+              </span>
+            </td>
+          </tr>
+        `;
+      })
+      .join("");
+  }
+
+
+  function addSampleEvent() {
+    const eventId = Date.now();
+  
+    const newEvent = {
+      id: eventId,
+      name: "Peer Resume Review",
+      date: "2026-07-02",
+      location: "Engineering Lounge",
+      roles: ["Check-in", "Outreach", "Setup", "Cleanup"],
+      shifts: [
+        {
+          id: eventId + 1,
+          slot: "Tue AM",
+          role: "Check-in",
+          assignedTo: null
+        },
+        {
+          id: eventId + 2,
+          slot: "Tue PM",
+          role: "Outreach",
+          assignedTo: null
+        },
+        {
+          id: eventId + 3,
+          slot: "Wed AM",
+          role: "Setup",
+          assignedTo: null
+        },
+        {
+          id: eventId + 4,
+          slot: "Wed PM",
+          role: "Cleanup",
+          assignedTo: null
+        }
+      ]
+    };
+  
+    data.events.push(newEvent);
+  
+    renderDashboard();
+    renderEvents();
+  }
+
+
   console.log(data);
 
   const volunteerList = document.getElementById("volunteerList");
@@ -204,10 +274,16 @@ const viewTitles = {
   });
 
   renderDashboard();
-  
+  renderEvents();
+
   data.volunteers.forEach(function (volunteer) {
     const listItem = document.createElement("li");
     listItem.textContent = `${volunteer.name} - ${volunteer.skills.join(", ")}`;
     volunteerList.appendChild(listItem);
   });
 
+  const addSampleEventButton = document.getElementById("addSampleEventButton");
+
+  addSampleEventButton.addEventListener("click", function () {
+    addSampleEvent();
+  });

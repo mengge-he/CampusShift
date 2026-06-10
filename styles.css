@@ -205,3 +205,48 @@
     background: #21764a;
     border-radius: 999px;
   }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  
+  .section-header h3 {
+    margin: 0;
+  }
+  
+  .section-header button {
+    min-height: 38px;
+    padding: 0 14px;
+    border: none;
+    border-radius: 8px;
+    background: #21764a;
+    color: white;
+    font-weight: bold;
+  }
+  
+  .table-wrap {
+    overflow-x: auto;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  th,
+  td {
+    padding: 12px 10px;
+    border-bottom: 1px solid #dbe1dd;
+    text-align: left;
+    vertical-align: top;
+  }
+  
+  th {
+    color: #66736d;
+    font-size: 12px;
+    text-transform: uppercase;
+  }
