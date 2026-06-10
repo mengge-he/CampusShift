@@ -250,3 +250,83 @@
     font-size: 12px;
     text-transform: uppercase;
   }
+
+  .volunteer-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+  
+  .volunteer-card {
+    border: 1px solid #dbe1dd;
+    border-radius: 8px;
+    background: #ffffff;
+    padding: 16px;
+  }
+  
+  .volunteer-card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  
+  .volunteer-card h4 {
+    margin: 0;
+    font-size: 16px;
+  }
+  
+  .skill-list,
+  .availability-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+  }
+  
+  .skill-pill,
+  .availability-pill {
+    display: inline-block;
+    padding: 5px 8px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: bold;
+  }
+  
+  .skill-pill {
+    background: #e5f3eb;
+    color: #21764a;
+  }
+  
+  .availability-pill {
+    background: #e7efff;
+    color: #2f64b3;
+  }
+  
+  .card-label {
+    margin-top: 12px;
+    color: #66736d;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 900px) {
+    .app-shell {
+      grid-template-columns: 1fr;
+    }
+  
+    .sidebar {
+      padding: 16px;
+    }
+  
+    .nav-list {
+      grid-template-columns: repeat(5, 1fr);
+    }
+  
+    .volunteer-grid,
+    .metrics-grid {
+      grid-template-columns: 1fr;
+    }
+  }

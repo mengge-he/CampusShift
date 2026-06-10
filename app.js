@@ -233,7 +233,6 @@ const slots = [
 
   console.log(data);
 
-  const volunteerList = document.getElementById("volunteerList");
 
 //   data.volunteers.forEach(function (volunteer) {
 //   const listItem = document.createElement("li");
@@ -273,17 +272,51 @@ const viewTitles = {
     });
   });
 
-  renderDashboard();
-  renderEvents();
 
-  data.volunteers.forEach(function (volunteer) {
-    const listItem = document.createElement("li");
-    listItem.textContent = `${volunteer.name} - ${volunteer.skills.join(", ")}`;
-    volunteerList.appendChild(listItem);
-  });
+  function renderVolunteers() {
+    const volunteerList = document.getElementById("volunteerList");
+  
+    volunteerList.innerHTML = data.volunteers
+      .map(function (volunteer) {
+        return `
+          <article class="volunteer-card">
+            <div class="volunteer-card-header">
+              <h4>${volunteer.name}</h4>
+              <span class="badge good">
+                ${volunteer.availability.length} slots
+              </span>
+            </div>
+  
+            <div class="card-label">Skills</div>
+            <div class="skill-list">
+              ${volunteer.skills
+                .map(function (skill) {
+                  return `<span class="skill-pill">${skill}</span>`;
+                })
+                .join("")}
+            </div>
+  
+            <div class="card-label">Availability</div>
+            <div class="availability-list">
+              ${volunteer.availability
+                .map(function (slot) {
+                  return `<span class="availability-pill">${slot}</span>`;
+                })
+                .join("")}
+            </div>
+          </article>
+        `;
+      })
+      .join("");
+  }
 
   const addSampleEventButton = document.getElementById("addSampleEventButton");
 
   addSampleEventButton.addEventListener("click", function () {
     addSampleEvent();
   });
+
+//   render all the data
+  renderDashboard();
+  renderEvents();
+  renderVolunteers();
