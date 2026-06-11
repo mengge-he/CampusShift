@@ -349,6 +349,58 @@ function renderAvailabilityGrid() {
         .join("");
 }
 
+function renderSchedule() {
+    const scheduleBoard = document.getElementById("scheduleBoard");
+
+    const shifts = allShifts();
+
+    scheduleBoard.innerHTML = shifts
+        .map(function (shift) {
+            return `
+          <article class="shift-card">
+            <h4>${shift.role}</h4>
+  
+            <div class="shift-meta">${shift.event.name}</div>
+            <div class="shift-meta">${shift.slot}</div>
+  
+            <label for="assign-${shift.id}" class="card-label">
+              Assigned Volunteer
+            </label>
+  
+            <select class="assignment-select" id="assign-${shift.id}" data-shift-id="${shift.id}">
+              <option value="">Open</option>
+  
+              ${data.volunteers
+                    .map(function (volunteer) {
+                        const selected =
+                            shift.assignedTo === volunteer.id ? "selected" : "";
+
+                        return `
+                    <option value="${volunteer.id}" ${selected}>
+                      ${volunteer.name}
+                    </option>
+                  `;
+                    })
+                    .join("")}
+            </select>
+          </article>
+        `;
+        })
+        .join("");
+}
+
+function volunteerName(id) {
+    const volunteer = data.volunteers.find(function (item) {
+        return item.id === id;
+    });
+
+    if (!volunteer) {
+        return "Open";
+    }
+
+    return volunteer.name;
+}
+
 const addSampleEventButton = document.getElementById("addSampleEventButton");
 
 addSampleEventButton.addEventListener("click", function () {
@@ -364,34 +416,57 @@ availabilityVolunteer.addEventListener("change", function () {
 const availabilityGrid = document.getElementById("availabilityGrid");
 
 availabilityGrid.addEventListener("click", function (event) {
-  if (!event.target.classList.contains("availability-slot")) {
-    return;
-  }
+    if (!event.target.classList.contains("availability-slot")) {
+        return;
+    }
 
-  event.target.classList.toggle("selected");
+    event.target.classList.toggle("selected");
 });
 
 
 const saveAvailabilityButton = document.getElementById("saveAvailabilityButton");
 
 saveAvailabilityButton.addEventListener("click", function () {
-  const selectedVolunteerId = Number(availabilityVolunteer.value);
+    const selectedVolunteerId = Number(availabilityVolunteer.value);
 
-  const volunteer = data.volunteers.find(function (item) {
-    return item.id === selectedVolunteerId;
-  });
+    const volunteer = data.volunteers.find(function (item) {
+        return item.id === selectedVolunteerId;
+    });
 
-  const selectedSlots = document.querySelectorAll(".availability-slot.selected");
+    const selectedSlots = document.querySelectorAll(".availability-slot.selected");
 
-  volunteer.availability = Array.from(selectedSlots).map(function (button) {
-    return button.dataset.slot;
-  });
+    volunteer.availability = Array.from(selectedSlots).map(function (button) {
+        return button.dataset.slot;
+    });
 
-  renderVolunteers();
-  renderDashboard();
+    renderVolunteers();
+    renderDashboard();
 });
+
+
+document.addEventListener("change", function (event) {
+    if (!event.target.classList.contains("assignment-select")) {
+      return;
+    }
+  
+    const shiftId = Number(event.target.dataset.shiftId);
+    const volunteerId = event.target.value === "" ? null : Number(event.target.value);
+  
+    data.events.forEach(function (eventItem) {
+      eventItem.shifts.forEach(function (shift) {
+        if (shift.id === shiftId) {
+          shift.assignedTo = volunteerId;
+        }
+      });
+    });
+  
+    renderDashboard();
+    renderEvents();
+    renderSchedule();
+  });
 
 //   render all the data
 renderDashboard();
 renderEvents();
 renderVolunteers();
+renderSchedule();

@@ -327,7 +327,8 @@ th {
 
     .volunteers-layout,
     .volunteer-grid,
-    .metrics-grid {
+    .metrics-grid,
+    .schedule-board {
         grid-template-columns: 1fr;
     }
 }
@@ -397,4 +398,38 @@ th {
     background: #21764a;
     color: white;
     font-weight: bold;
+}
+
+
+.schedule-board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+}
+
+.shift-card {
+    border: 1px solid #dbe1dd;
+    border-radius: 8px;
+    background: #ffffff;
+    padding: 16px;
+}
+
+.shift-card h4 {
+    margin: 0 0 6px;
+    font-size: 16px;
+}
+
+.shift-card select {
+    width: 100%;
+    min-height: 40px;
+    padding: 8px 10px;
+    border: 1px solid #dbe1dd;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+
+.shift-meta {
+    color: #66736d;
+    font-size: 14px;
+    margin-top: 4px;
 }
